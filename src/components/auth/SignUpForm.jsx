@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PasswordInput from "../inputs/PasswordInput";
 import GoogleIcon from "../icons/GoogleIcon";
 import GithubIcon from "../icons/GithubIcon";
@@ -13,14 +15,18 @@ export default function SignUpForm({ onSwitch }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!fullName || !email || !password || !confirmPassword) {
-      return alert("Please fill all fields");
+      return toast.error("Please fill all fields");
     }
+
     if (password !== confirmPassword) {
-      return alert("Passwords do not match");
+      return toast.error("Passwords do not match");
     }
+
     if (!agreed) {
-      return alert("You must agree to the Terms and Conditions");
+      return toast.error("You must agree to the Terms and Conditions");
     }
+
+    toast.success("Account created successfully!");
 
     console.log("Sign Up:", { fullName, email, password });
   };
@@ -106,14 +112,14 @@ export default function SignUpForm({ onSwitch }) {
         <button
           type="button"
           className="w-1/2 flex items-center justify-center gap-2 bg-red-500 text-white py-2 rounded hover:bg-red-600 transition-colors"
-          onClick={() => alert("Google Signup")}
+          onClick={() => toast.success("SignUp Via Google!")}
         >
           <GoogleIcon /> Google
         </button>
         <button
           type="button"
           className="w-1/2 flex items-center justify-center gap-2 bg-gray-800 text-white py-2 rounded hover:bg-gray-900 transition-colors"
-          onClick={() => alert("GitHub Signup")}
+          onClick={() => toast.success("SignUp Via GitHub!")}
         >
           <GithubIcon /> GitHub
         </button>

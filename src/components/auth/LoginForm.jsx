@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PasswordInput from "../inputs/PasswordInput";
 import GoogleIcon from "../icons/GoogleIcon";
 import GithubIcon from "../icons/GithubIcon";
@@ -12,7 +14,8 @@ export default function LoginForm({ onSwitch }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!email || !password) return alert("Please fill in both fields");
+    if (!email || !password) return toast.error("Please fill in both fields");
+    toast.success("Login complete 🚀");
     console.log("Login:", { email, password });
   };
 
@@ -78,14 +81,14 @@ export default function LoginForm({ onSwitch }) {
         <button
           type="button"
           className="w-1/2 flex items-center justify-center gap-2 bg-red-500 text-white py-2 rounded hover:bg-red-600 transition-colors"
-          onClick={() => alert("Google Login")}
+          onClick={() => toast.success("Login Via Google!")}
         >
           <GoogleIcon /> Google
         </button>
         <button
           type="button"
           className="w-1/2 flex items-center justify-center gap-2 bg-gray-800 text-white py-2 rounded hover:bg-gray-900 transition-colors"
-          onClick={() => alert("GitHub Login")}
+          onClick={() => toast.success("Login Via GitHub!")}
         >
           <GithubIcon /> GitHub
         </button>
